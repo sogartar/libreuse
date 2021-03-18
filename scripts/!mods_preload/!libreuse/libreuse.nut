@@ -1,6 +1,10 @@
-::libreuse <- { };
-
 ::mods_registerMod("libreuse", 0.1, "libreuse");
+
+local gt = this.getroottable();
+
+if (!("libreuse" in gt)) {
+  ::libreuse <- {};
+}
 
 ::libreuse.toStrHelper <- function(o, this_func, maxDepth = 0, depth = 0) {
   if (maxDepth > -1 && depth > maxDepth) {
@@ -67,3 +71,9 @@
     }
   }
 };
+
+::libreuse.eulerNumber <- 2.718281;
+
+::libreuse.gaussian <- function(x, b=0, c=1) {
+  return this.Math.pow(::libreuse.eulerNumber, -(x - b)*(x - b)/(2.0*c*c));
+}
