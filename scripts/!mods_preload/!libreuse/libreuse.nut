@@ -77,3 +77,12 @@ if (!("libreuse" in gt)) {
 ::libreuse.gaussian <- function(x, b=0, c=1) {
   return this.Math.pow(::libreuse.eulerNumber, -(x - b)*(x - b)/(2.0*c*c));
 }
+
+::libreuse.roundRandomWeighted <- function(x) {
+  local fraction = this.Math.floor((x - this.Math.floor(x)) * 1000);
+  local res = this.Math.floor(x);
+  if (fraction > this.Math.rand(1, 1000)) {
+    res += 1;
+  }
+  return res;
+}
