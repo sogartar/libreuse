@@ -78,6 +78,31 @@ if (!("libreuse" in gt)) {
   return this.Math.pow(::libreuse.eulerNumber, -(x - b)*(x - b)/(2.0*c*c));
 }
 
+::libreuse.factorial <- function(n) {
+  local res = 1;
+  for (local i = 1; i <= n; i += 1) {
+    res *= i;
+  }
+  return res;
+}
+
+::libreuse.binomialCoefficient <- function(n, k) {
+  return ::libreuse.factorial(n) / (::libreuse.factorial(k) * ::libreuse.factorial(n - k));
+}
+
+::libreuse.binomialPdf <- function(n, k, p) {
+  return ::libreuse.binomialCoefficient(n, k) * this.Math.pow(p, k) * this.Math.pow(1 - p, n - k);
+}
+
+::libreuse.binomialCdf <- function(n, k, p) {
+  local res = 0.0;
+  local floorK = this.Math.floor(k);
+  for (local i = 0; i <= floorK; i += 1) {
+    res += ::libreuse.binomialPdf(n, i, p);
+  }
+  return res;
+}
+
 ::libreuse.roundRandomWeighted <- function(x) {
   local fraction = this.Math.floor((x - this.Math.floor(x)) * 1000);
   local res = this.Math.floor(x);
