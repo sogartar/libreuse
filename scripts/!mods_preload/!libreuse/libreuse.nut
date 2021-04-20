@@ -111,3 +111,15 @@ if (!("libreuse" in gt)) {
   }
   return res;
 }
+
+::libreuse.findPerkConsts <- function(perkId, perks=gt.Const.Perks.Perks) {
+  foreach (perksRow in perks) {
+    foreach (perk in perksRow) {
+      if (perk.ID == perkId) {
+        return perk;
+      }
+    }
+  }
+
+  return null;
+}
