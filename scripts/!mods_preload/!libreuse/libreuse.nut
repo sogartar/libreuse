@@ -1,4 +1,4 @@
-::mods_registerMod("libreuse", 0.2.0, "libreuse");
+::mods_registerMod("libreuse", 0.3.0, "libreuse");
 
 local gt = this.getroottable();
 
