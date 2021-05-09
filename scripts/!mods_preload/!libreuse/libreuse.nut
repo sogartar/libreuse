@@ -47,10 +47,6 @@ if (!("libreuse" in gt)) {
 
 ::libreuse.getParentClass <- function(c, name) {
   while (true) {
-    #local isSuperNameMember = "SuperName" in c;
-    #local isNotSuperNameMember = !("SuperName" in c);
-    #this.logInfo("isNotSuperNameMember = " + isNotSuperNameMember);
-    #this.logInfo("c = " + ::libreuse.toStr(c, 4));
     if (!("SuperName" in c)) {
       return null;
     } else if (name == c.SuperName) {
@@ -76,6 +72,10 @@ if (!("libreuse" in gt)) {
 
 ::libreuse.gaussian <- function(x, b=0, c=1) {
   return this.Math.pow(::libreuse.eulerNumber, -(x - b)*(x - b)/(2.0*c*c));
+}
+
+::libreuse.sigmuid <- function(x) {
+  return  1 / (1 + this.Math.pow(::libreuse.eulerNumber, -x));
 }
 
 ::libreuse.factorial <- function(n) {
@@ -122,4 +122,10 @@ if (!("libreuse" in gt)) {
   }
 
   return null;
+}
+
+::libreuse.equidistantPiecewiseLinear <- function(valsArr, arg) {
+  local i = this.Math.floor(arg);
+  local fraction = arg - this.Math.floor(arg);
+  return valsArr[i] * (1 - fraction) + valsArr[i + 1] * fraction;
 }
